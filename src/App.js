@@ -1,24 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useLocalState } from "./util/useLocalStorage";
+import { Routes, Route } from "react-router-dom";
+import Homepage from "./Homepage";
+import "./App.css";
+import Login from "./Login";
+import Order from "./Order";
+import PrivateRoute from "./PrivateRoute";
+import SignUp from "./SignUp";
+import AdminHomepage from "./AdminHomepage";
 
 function App() {
+  const [jwt, setJwtToken] = useLocalState("", "jwt");
+
+  // useEffect(() => {
+  //   if (!jwt) {
+  //     const reqBody = {
+  //       username: "siddhantshaw97@gmail.com",
+  //       password: "S@1",
+  //     };
+
+  //     fetch("api/v1/auth/login", {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //          Authorization: `Bearer ${jwt}`
+  //       },
+  //       body: JSON.stringify(reqBody),
+  //       method: "post",
+  //     })
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         setJwtToken(data.token);
+  //       });
+  //   }
+  // });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path="/" element={<Homepage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signUp" element={<SignUp />} />
+
+      <Route
+        path="/order"
+        element={
+          <PrivateRoute>
+            <Order />
+          </PrivateRoute>
+        }
+      />
+
+      <Route
+        path="/admin"
+        element={
+          <PrivateRoute>
+            <AdminHomepage />
+          </PrivateRoute>
+        }
+      />
+    </Routes>
   );
 }
 

@@ -1,0 +1,10 @@
+{
+  "extends": [
+      "eslint:recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:react/recommended",
+      "plugin:prettier/recommended",
+      "prettier"
+    ],
+    "plugins": ["react"]
+}
