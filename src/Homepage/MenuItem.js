@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MenuItem = ({
   id,
@@ -8,15 +8,19 @@ const MenuItem = ({
   price,
   basketId,
   setBasketData,
+  passedQuantity,
 }) => {
   const [quantity, setQuantity] = useState(0);
+
+  useEffect(() => {
+    if (passedQuantity && passedQuantity !== 0) setQuantity(passedQuantity);
+  }, []);
 
   const makeBasketCall = (tempQuantity) => {
     const reqBody = {
       itemId: id,
       quantity: tempQuantity,
     };
-    console.log(reqBody);
     fetch(`http://localhost:8080/api/v1/basket/${basketId}`, {
       headers: {
         "Content-Type": "application/json",
@@ -33,7 +37,7 @@ const MenuItem = ({
         setQuantity(tempQuantity);
       })
       .catch((message) => {
-        console.log(message);
+        console.error(message);
       });
   };
 

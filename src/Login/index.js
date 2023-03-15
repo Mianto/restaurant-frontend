@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  // const { state } = useLocation();
+  const location = useLocation();
 
   const [jwtToken, setJwtToken] = useLocalState("", "jwt");
 
@@ -35,13 +35,16 @@ const Login = () => {
       .catch((message) => {
         alert(message);
       });
+    setUsername("");
+    setPassword("");
   };
 
   return (
     <>
+      {location.state ? location.state.message : <></>}
       <form onSubmit={sendLoginRequest}>
         <div>
-          <label htmlFor="username">Username</label>
+          <label htmlFor="username">Email</label>
           <input
             type="email"
             id="username"

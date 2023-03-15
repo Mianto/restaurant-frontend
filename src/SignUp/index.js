@@ -17,7 +17,6 @@ const SignUp = () => {
       email,
       password,
     };
-    console.log(reqBody);
     fetch("http://localhost:8080/api/v1/auth/signUpCustomer", {
       headers: {
         "Content-Type": "application/json",
@@ -26,7 +25,6 @@ const SignUp = () => {
       method: "post",
     })
       .then((response) => {
-        console.log(response);
         if (response.status === 200) return response.json();
         else return Promise.reject(response.json());
       })

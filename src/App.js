@@ -8,6 +8,7 @@ import Order from "./Order";
 import PrivateRoute from "./PrivateRoute";
 import SignUp from "./SignUp";
 import AdminHomepage from "./AdminHomepage";
+import BasketPreviewer from "./BasketPreviewer";
 
 function App() {
   const [jwt, setJwtToken] = useLocalState("", "jwt");
@@ -39,6 +40,7 @@ function App() {
       <Route path="/" element={<Homepage />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signUp" element={<SignUp />} />
+      <Route path="/basketPreviewer" element={<BasketPreviewer />} />
 
       <Route
         path="/order"
