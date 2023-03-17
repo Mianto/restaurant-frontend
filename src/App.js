@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocalState } from "./util/useLocalStorage";
+// import { useLocalState } from "./util/useLocalStorage";
 import { Routes, Route } from "react-router-dom";
 import Homepage from "./Homepage";
 import "./App.css";
@@ -11,7 +11,7 @@ import AdminHomepage from "./AdminHomepage";
 import BasketPreviewer from "./BasketPreviewer";
 
 function App() {
-  const [jwt, setJwtToken] = useLocalState("", "jwt");
+  // const [jwt, setJwtToken] = useLocalState("", "jwt");
 
   // useEffect(() => {
   //   if (!jwt) {

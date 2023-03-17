@@ -23,9 +23,9 @@ const AdminHomepage = () => {
           navigate("/login", {
             state: { message: "Please login with admin credentials" },
           });
+        } else {
+          return response.json();
         }
-        console.log(response);
-        return response.json();
       })
       .then((data) => {
         console.log(data);
